@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{.Data.Title}}</title>
+    <link rel="stylesheet" href="/public/assets/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a href="/home" class="navbar-brand"><img src="/public/assets/img/logo.png" width="50px" alt=""></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a href="/home" class="nav-link">Home</a></li>
+                    {{if .Data.IsLogin}}<li class="nav-item"><a href="/project" class="nav-link">Add Project</a></li>{{end}}
+                </ul>
+                {{if .Data.IsLogin}}
+                <a href="#" class="nav-link mx-3">Hello, {{.Data.Email}}</a>
+                <a href="/logout" class="nav-link mx-3">Logout</a>
+                {{else}}
+                <a href="/register" class="nav-link mx-3">Register</a>
+                <a href="/login" class="nav-link mx-3">Login</a>
+                {{end}}
+                <a href="/contact" class="btn btn-dark">Contact Me</a>
+            </div>
+        </div>
+    </nav>
+    <div class="detail-project bg-body-secondary pt-2">
+        <div class="container-fluid">
+            <div class="detail-title h2 text-center fw-bold">{{.Projects.ProjectName}}</div>
+            <div class="project-desc mt-5">
+                <div class="row">
+                    <div class="col">
+                        <img src="/public/assets/img/pict2.jpg" width="100%" height="400px" alt="">
+                    </div>
+                    <div class="col-4">
+                        <div class="desc-title fs-3 fw-bold">Duration</div>
+                        <div class="pt-3 fs-5">
+                            <i class="fa-solid fa-calendar-days"></i> {{.Projects.StartDate}} - {{.Projects.EndDate}}
+                        </div>
+                        <div class="pt-2 fs-5">
+                            <i class="fa-solid fa-clock"></i> 1 Month | Author Id : {{.Projects.AuthId}}
+                        </div>
+                        <div class="desc-title fs-3 fw-bold pt-5">Technologies</div>
+                        <div class="row pt-3">
+                            {{if .Projects.Node}}<div class="col fs-5"><i class="fa-brands fa-node-js"></i> Node Js</div>{{end}}
+                            {{if .Projects.React}}<div class="col fs-5"><i class="fa-brands fa-react"></i> React Js</div>{{end}}
+                        </div>
+                        <div class="row pt-2">
+                            {{if .Projects.Next}}<div class="col fs-5"><i class="fa-brands fa-square-js"></i> Next Js</div>{{end}}
+                            {{if .Projects.TypeScript}}<div class="col fs-5"><i class="fa-brands fa-playstation"></i> TypeScript</div>{{end}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="paragraf fs-6 text-justify pt-5">{{.Projects.Description}}</div>
+        </div>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+</html>
